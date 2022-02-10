@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/discover"
+        android:title="Discovery"
+        android:icon="@drawable/ic_baseline_local_fire_department_24"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/favorite"
+        android:title="Favorite"
+        android:icon="@drawable/ic_baseline_favorite_24"
+        app:showAsAction="never" />
+
+</menu>

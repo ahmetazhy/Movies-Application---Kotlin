@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/discovery_Fragment">
+
+    <fragment
+        android:id="@+id/discovery_Fragment"
+        android:name="com.example.moviesapplication.discovery.Discovery_Fragment"
+        android:label="fragment_home"
+        tools:layout="@layout/discovery_layout" >
+
+        <action
+            android:id="@+id/action_discovery_Fragment_to_detail_Fragment"
+            app:destination="@id/detail_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favorite_Fragment"
+        android:name="com.example.moviesapplication.Favorite_Fragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/favorite_layout" >
+        <action
+            android:id="@+id/action_favorite_Fragment_to_detail_Fragment2"
+            app:destination="@id/detail_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detail_Fragment"
+        android:name="com.example.moviesapplication.details.Detailfragment"
+        android:label="detail_layout"
+        tools:layout="@layout/detail_layout" >
+        <argument
+            android:name="selectedMovies"
+            app:argType="com.example.moviesapplication.network.Resultss"/>
+    </fragment>
+</navigation>
