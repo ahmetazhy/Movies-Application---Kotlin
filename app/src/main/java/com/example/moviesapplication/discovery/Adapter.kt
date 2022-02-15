@@ -21,7 +21,7 @@ class ResultAdapter(val onClickListener: OnClickListener) :
     class ResultssViewHolder(private var binding: DiscoveryItemBinding ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(resultss: Resultss) {
-            // binding.wDescription.text = forecast.weather[position].description
+
             binding.property = resultss
             binding.executePendingBindings()
 

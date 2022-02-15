@@ -3,17 +3,19 @@ package com.example.moviesapplication.network
 import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.parcelize.Parcelize
 
 @JsonClass(generateAdapter = true)
+@Parcelize
 data class PopularProperty (
     val page : Int,
     val results : List<Resultss>,
     val total_pages : Int,
     val total_results : Int
-)
+):Parcelable
 
 @JsonClass(generateAdapter = true)
-
+@Parcelize
 data class Resultss (
 
     val adult : Boolean,
@@ -30,5 +32,5 @@ data class Resultss (
     val video : Boolean,
     val vote_average : Double,
     val vote_count : Int
-)
+):Parcelable
 

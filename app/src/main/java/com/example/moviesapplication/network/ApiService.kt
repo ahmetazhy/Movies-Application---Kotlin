@@ -33,6 +33,5 @@ object PopularApi {
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .baseUrl(BASE_URL)
         .build()
-
     val retrofitService =retrofit.create(PopularApiService::class.java)
 }

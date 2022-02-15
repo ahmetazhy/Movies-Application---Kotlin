@@ -51,9 +51,7 @@ class Discovery_ViewModels() : ViewModel() {
 
                 try {
                     var resultapi = getPropertiesDeferred.await()
-                    Log.i(
-                        "problem","${resultapi.results}"
-                    )
+              
                     _properties.postValue(resultapi.results)
                 } catch (e: Exception) {
 
@@ -69,9 +67,7 @@ class Discovery_ViewModels() : ViewModel() {
 
                 try {
                     var resultapi = getPropertiesDeferred.await()
-                    Log.i(
-                        "problem","${resultapi.results}"
-                    )
+
                     _properties.postValue(resultapi.results)
                 } catch (e: Exception) {
 
@@ -87,9 +83,7 @@ class Discovery_ViewModels() : ViewModel() {
 
                 try {
                     var resultapi = getPropertiesDeferred.await()
-                    Log.i(
-                        "problem","${resultapi.results}"
-                    )
+
                     _properties.postValue(resultapi.results)
                 } catch (e: Exception) {
 

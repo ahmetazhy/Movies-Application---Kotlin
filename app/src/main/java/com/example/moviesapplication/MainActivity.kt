@@ -1,44 +1,28 @@
 package com.example.moviesapplication
 
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
-import com.example.moviesapplication.discovery.Discovery_Fragment
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    // start a fragment
-    private lateinit var currentFragment : Fragment
+    private lateinit var bottomNav: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        // we need two fragments for the bottom navigation
-        // home and dashboard
-        // set home fragment as launcher
-        supportFragmentManager.beginTransaction().replace(R.id.nav_container, Discovery_Fragment()).commit()
-        // now create a menu
-        val bottomNav : BottomNavigationView = findViewById(R.id.bottom_navigation)
-        bottomNav.setOnNavigationItemSelectedListener(bottomListener)
 
+        val navController = this.findNavController(R.id.nav_host_fragment)
+        // Find reference to bottom navigation view
+        val navView: BottomNavigationView = findViewById(R.id.bottom_nav_view)
+        navView.itemIconTintList = null
+        navView.itemTextColor = null
+        // Hook your navigation controller to bottom navigation view
+        navView.setupWithNavController(navController)
 
     }
-
-    val bottomListener = BottomNavigationView.OnNavigationItemSelectedListener {
-        // switch between ids of menu
-        when(it.itemId){
-            R.id.discover -> {
-                currentFragment = Discovery_Fragment()
-            }
-            R.id.favorite -> {
-                currentFragment = Favorite_Fragment()
-            }
-        }
-        supportFragmentManager.beginTransaction().replace(R.id.nav_container,currentFragment).commit()
-        true
-    }
-
 }

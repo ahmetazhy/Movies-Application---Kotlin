@@ -5,10 +5,8 @@ import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesapplication.R
 import com.example.moviesapplication.databinding.DiscoveryLayoutBinding
 
@@ -29,7 +27,7 @@ class Discovery_Fragment : Fragment() {
         binding.viewModel = viewModel
 
         val adapter = ResultAdapter(ResultAdapter.OnClickListener {
-           viewModel.displayMoviesDetails(it)
+            viewModel.displayMoviesDetails(it)
 
         })
         binding.weekList.adapter = adapter

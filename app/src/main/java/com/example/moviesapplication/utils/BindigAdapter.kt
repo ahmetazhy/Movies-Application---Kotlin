@@ -2,6 +2,7 @@ package com.example.moviesapplication.utils
 
 import android.util.Log
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.moviesapplication.R
 import com.example.moviesapplication.discovery.ResultAdapter
 import com.example.moviesapplication.network.Resultss
+import javax.xml.transform.stream.StreamSource
 
 
 @BindingAdapter("listData")
@@ -35,4 +37,11 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
                 .error(R.drawable.ic_broken_image))
             .into(imgView)
     }
+}
+
+
+@BindingAdapter("generic")
+fun TextView.setGeneric(date: Int?) {
+    val generic = date
+    this.text = generic.toString()
 }
