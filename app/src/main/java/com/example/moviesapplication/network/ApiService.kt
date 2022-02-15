@@ -7,6 +7,7 @@ import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 
 private const val BASE_URL = "https://api.themoviedb.org/3/"
@@ -24,6 +25,12 @@ interface PopularApiService {
 
     @GET("movie/now_playing?api_key=f19914984d247f46e71e8a3e3d7bca02&language=en-US&page=1")
     fun getNowPlaying(): Deferred<PopularProperty>
+
+    @GET("https://api.themoviedb.org/3/movie/{movie_id}?anguage=en-US&api_key=f19914984d247f46e71e8a3e3d7bca02&append_to_response=videos,images")
+    fun getDetail(
+        @Path(value = "movie_id", encoded = false) key: Int,
+    ): Deferred<PopularProperty>
+
 }
 
 

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/discovery_Fragment"
         android:name="com.example.moviesapplication.discovery.Discovery_Fragment"
-        android:label="fragment_home"
+        android:label="Movies Application"
         tools:layout="@layout/discovery_layout" >
 
         <action
@@ -27,7 +27,7 @@
     <fragment
         android:id="@+id/detail_Fragment"
         android:name="com.example.moviesapplication.details.Detailfragment"
-        android:label="detail_layout"
+        android:label=""
         tools:layout="@layout/detail_layout" >
         <argument
             android:name="selectedMovies"
