@@ -26,10 +26,10 @@ interface PopularApiService {
     @GET("movie/now_playing?api_key=f19914984d247f46e71e8a3e3d7bca02&language=en-US&page=1")
     fun getNowPlaying(): Deferred<PopularProperty>
 
-    @GET("https://api.themoviedb.org/3/movie/{movie_id}?anguage=en-US&api_key=f19914984d247f46e71e8a3e3d7bca02&append_to_response=videos,images")
+    @GET("movie/{movie_id}?language=en-US&page=1&api_key=f19914984d247f46e71e8a3e3d7bca02&append_to_response=videos,images")
     fun getDetail(
         @Path(value = "movie_id", encoded = false) key: Int,
-    ): Deferred<PopularProperty>
+    ): Deferred<MoviesDetail>
 
 }
 
@@ -40,5 +40,6 @@ object PopularApi {
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .baseUrl(BASE_URL)
         .build()
+
     val retrofitService =retrofit.create(PopularApiService::class.java)
 }

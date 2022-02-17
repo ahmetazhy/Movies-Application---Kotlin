@@ -16,294 +16,260 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/banner"
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
-                android:scaleType="centerCrop"
-                app:imageUrl="@{viewModel.selectedMovies.backdrop_path}"
-                tools:src="@drawable/backgroundimage" />
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
+                    android:id="@+id/banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:scaleType="centerCrop"
+                    app:imageUrl="@{viewModel.selectedMovies.backdrop_path}"
+                    tools:src="@drawable/backgroundimage" />
 
 
-            <ImageView
-                android:id="@+id/profilePic"
-                android:layout_width="200dp"
-                android:layout_height="220dp"
-                android:layout_alignBottom="@+id/linearLayout"
-                android:layout_marginStart="-12dp"
-                app:imageUrl="@{viewModel.selectedMovies.poster_path}"
-                tools:src="@drawable/download" />
+                <ImageView
+                    android:id="@+id/profilePic"
+                    android:layout_width="200dp"
+                    android:layout_height="220dp"
+                    android:layout_alignBottom="@+id/linearLayout"
+                    android:layout_marginStart="-12dp"
+                    app:imageUrl="@{viewModel.selectedMovies.poster_path}"
+                    tools:src="@drawable/download" />
 
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/banner"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_toEndOf="@+id/profilePic"
+                    android:orientation="vertical"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Star Wars"
+                        android:text="@{viewModel.selectedMovies.original_title}"
+                        android:textColor="@color/black"
+                        android:textSize="19sp"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:orientation="horizontal">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerView"
+                            android:layout_width="match_parent"
+                            app:spanCount="2"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            tools:listitem="@layout/movies_generic"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/primary_color" />
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="30dp">
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="8.2"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:textSize="11sp"
+                        android:text="@{String.valueOf(viewModel.selectedMovies.vote_average)}"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="-4dp"
+                        app:srcCompat="@drawable/star_rate" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_marginStart="70dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/language" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="En"
+                        android:textAllCaps="true"
+                        android:text="@{viewModel.selectedMovies.original_language}"
+                        android:layout_marginStart="-65dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:textSize="11sp"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="33dp"
+                        app:srcCompat="@drawable/av_timer" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="1977-05-25"
+                        android:text="@{String.valueOf(viewModel.selectedMovies.release_date)}"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:textSize="11sp"
+                        android:layout_marginEnd="15dp"
+                        android:textStyle="bold"/>
+                </TableRow>
+                <TableRow android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@{String.valueOf(viewModel.selectedMovies.vote_count)}"
+                        android:textColor="@color/gray"
+                        android:textSize="11sp"
+                        tools:text="11470" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/votes"
+                        android:layout_marginStart="3dp"
+                        android:layout_gravity="start"
+                        android:textColor="@color/gray"
+                        android:textSize="11sp" />
+                    <TextView
+                        android:layout_marginStart="50dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/language"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/language" />
+                    <TextView
+                        android:layout_marginStart="50dp"
+                        android:text="@string/release_date"
+                        />
+
+
+
+                </TableRow>
+
+            </TableLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/primary_color" />
 
             <LinearLayout
-                android:id="@+id/linearLayout"
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/banner"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
-                android:layout_toEndOf="@+id/profilePic"
                 android:orientation="vertical"
-                android:weightSum="100">
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Star Wars"
-                    android:text="@{viewModel.selectedMovies.original_title}"
-                    android:textColor="@color/black"
-                    android:textSize="19sp"
-                    android:textStyle="bold">
+                    android:layout_weight="1"
+                    android:textColor="@color/primary_color"
+                    android:text="@string/overviewTitle" />
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    tools:text="@string/overview"
+                    android:text="@{viewModel.selectedMovies.overview}"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    />
+            </LinearLayout>
 
-                </TextView>
-
-                <LinearLayout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="23dp"
-                    android:layout_marginBottom="4dp"
-                    android:orientation="horizontal">
+                    android:layout_weight="1"
+                    android:textColor="@color/primary_color"
+                    android:text="@string/the_cast" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="4dp"
-                        android:background="@drawable/border"
-                        android:padding="3dp"
-                        android:text="@{String.valueOf(viewModel.selectedMovies.genre_ids[0])}"
-                        tools:text="Action" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/border"
-                        android:padding="3dp"
-                        android:text="@{String.valueOf(viewModel.selectedMovies.genre_ids[1])}"
-                        tools:text="Adventure" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/border"
-                        android:padding="3dp"
-                        android:text="@{String.valueOf(viewModel.selectedMovies.genre_ids[2])}"
-                        tools:text="Comedy" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/border"
-                        android:layout_marginStart="2dp"
-                        android:padding="3dp"
-                        android:text="@{String.valueOf(viewModel.selectedMovies.genre_ids[3])}"
-                        tools:text="Comedy" />
-                </LinearLayout>
-
-
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/download" />
 
             </LinearLayout>
-        </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/primary_color" />
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="30dp">
-        <TableRow>
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="8.2"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                android:textSize="11sp"
-               android:text="@{String.valueOf(viewModel.selectedMovies.vote_average)}"
-                android:textStyle="bold"/>
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="30dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/primary_color"
+                    android:text="@string/trailers" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="-4dp"
-                app:srcCompat="@drawable/star_rate" />
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/download"/>
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_marginStart="70dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/language" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="En"
-                android:textAllCaps="true"
-              android:text="@{viewModel.selectedMovies.original_language}"
-                android:layout_marginStart="-65dp"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                android:textSize="11sp"
-                android:textStyle="bold"/>
+            </LinearLayout>
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="33dp"
-                app:srcCompat="@drawable/av_timer" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="1977-05-25"
-                android:text="@{String.valueOf(viewModel.selectedMovies.release_date)}"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                android:textSize="11sp"
-                android:layout_marginEnd="15dp"
-                android:textStyle="bold"/>
-        </TableRow>
-        <TableRow android:layout_marginTop="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@{String.valueOf(viewModel.selectedMovies.vote_count)}"
-                android:textColor="@color/gray"
-                android:textSize="11sp"
-                tools:text="11470" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/votes"
-                android:layout_marginStart="3dp"
-                android:layout_gravity="start"
-                android:textColor="@color/gray"
-                android:textSize="11sp" />
-            <TextView
-                android:layout_marginStart="50dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/language"
-                android:layout_gravity="center"
-                app:srcCompat="@drawable/language" />
-            <TextView
-                android:layout_marginStart="50dp"
-                android:text="@string/release_date"
-                />
-
-
-
-        </TableRow>
-
-    </TableLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/primary_color" />
-
-    <LinearLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/primary_color"
-            android:text="@string/overviewTitle" />
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_marginTop="20dp"
-            android:layout_width="wrap_content"
-            tools:text="@string/overview"
-            android:text="@{viewModel.selectedMovies.overview}"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-       />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/primary_color"
-            android:text="@string/the_cast" />
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:src="@drawable/download" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="30dp"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/primary_color"
-            android:text="@string/trailers" />
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_weight="1"
-            android:src="@drawable/download"/>
-
-    </LinearLayout>
-
-</LinearLayout>
+        </LinearLayout>
 
 
 

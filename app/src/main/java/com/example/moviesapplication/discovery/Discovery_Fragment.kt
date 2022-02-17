@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -29,6 +30,7 @@ class Discovery_Fragment : Fragment() {
         val adapter = ResultAdapter(ResultAdapter.OnClickListener {
             viewModel.displayMoviesDetails(it)
 
+
         })
         binding.weekList.adapter = adapter
 
@@ -38,9 +40,10 @@ class Discovery_Fragment : Fragment() {
 
 
         viewModel.navigateToSelectedMovies.observe(viewLifecycleOwner) {
-            if (null != it) {
+            val id = it?.id
+            if (id != null) {
                 findNavController().navigate(
-                    Discovery_FragmentDirections.actionDiscoveryFragmentToDetailFragment(it)
+                    Discovery_FragmentDirections.actionDiscoveryFragmentToDetailFragment(id)
                 )
                 viewModel.displayPropertyDetailsComplete()
             }
@@ -52,7 +55,6 @@ class Discovery_Fragment : Fragment() {
                 adapter.submitList(it)
                 adapter.notifyDataSetChanged()
 
-                Log.i("submit", "$it")
             } else {
                 adapter.submitList(listOf())
             }
@@ -60,6 +62,7 @@ class Discovery_Fragment : Fragment() {
 
 
         binding.lifecycleOwner = this
+        (activity as AppCompatActivity).supportActionBar?.show()
         setHasOptionsMenu(true)
         return binding.root
     }
@@ -72,11 +75,13 @@ class Discovery_Fragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.popularitem) {
-            Toast.makeText(this.context, "popular", Toast.LENGTH_LONG).show()
+            Toast.makeText(this.context, "Popular", Toast.LENGTH_LONG).show()
             viewModel.getPopularMovies()
         } else if (item.itemId == R.id.toprated) {
+            Toast.makeText(this.context, "Top Rated", Toast.LENGTH_LONG).show()
             viewModel.getTopRatedMovies()
         } else if (item.itemId == R.id.nowplaying) {
+            Toast.makeText(this.context, "Now Playing", Toast.LENGTH_LONG).show()
             viewModel.getNowPlaying()
         }
         return true

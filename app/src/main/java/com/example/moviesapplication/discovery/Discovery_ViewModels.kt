@@ -1,24 +1,21 @@
 package com.example.moviesapplication.discovery
 
-import android.app.Application
-import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.moviesapplication.network.PopularApi
 import com.example.moviesapplication.network.Resultss
 import kotlinx.coroutines.*
-import timber.log.Timber
 
-enum class popularApiStatus { LOADING, ERROR, DONE }
+enum class MoviesApiStatus { LOADING, ERROR, DONE }
 
-class Discovery_ViewModels() : ViewModel() {
+class Discovery_ViewModels : ViewModel() {
 
-    private val _status = MutableLiveData<popularApiStatus>()
-
-    // The external immutable LiveData for the request status
-    val status: LiveData<popularApiStatus>
+    private val _status = MutableLiveData<MoviesApiStatus>()
+    val status: LiveData<MoviesApiStatus>
         get() = _status
 
-    private val _navigateToSelectedMovies= MutableLiveData<Resultss?>()
+    private val _navigateToSelectedMovies = MutableLiveData<Resultss?>()
 
     val navigateToSelectedMovies: MutableLiveData<Resultss?>
         get() = _navigateToSelectedMovies
@@ -36,63 +33,72 @@ class Discovery_ViewModels() : ViewModel() {
     val properties: LiveData<List<Resultss>>
         get() = _properties
 
+    private var viewModelJob = Job()
+    private val ioScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+
     init {
         getPopularMovies()
     }
 
-
-    private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
     fun getPopularMovies() {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO){
+        ioScope.launch {
+            withContext(Dispatchers.IO) {
                 var getPropertiesDeferred = PopularApi.retrofitService.getProperties()
-
+             /*   _status.value = MoviesApiStatus.LOADING*/
                 try {
                     var resultapi = getPropertiesDeferred.await()
-              
-                    _properties.postValue(resultapi.results)
-                } catch (e: Exception) {
 
+                    _properties.postValue(resultapi.results)
+            /*        _status.value = MoviesApiStatus.DONE*/
+                } catch (e: Exception) {
+/*                    _status.value = MoviesApiStatus.ERROR*/
                 }
             }
         }
     }
 
     fun getTopRatedMovies() {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO){
+        ioScope.launch{
+            withContext(Dispatchers.IO) {
                 var getPropertiesDeferred = PopularApi.retrofitService.getTopRated()
-
+//                _status.value = MoviesApiStatus.LOADING
                 try {
                     var resultapi = getPropertiesDeferred.await()
 
                     _properties.postValue(resultapi.results)
+//                    _status.value = MoviesApiStatus.DONE
                 } catch (e: Exception) {
-
+//                    _status.value = MoviesApiStatus.ERROR
                 }
             }
         }
     }
 
     fun getNowPlaying() {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO){
+        ioScope.launch {
+            withContext(Dispatchers.IO) {
                 var getPropertiesDeferred = PopularApi.retrofitService.getNowPlaying()
-
+/*                _status.value = MoviesApiStatus.LOADING*/
                 try {
                     var resultapi = getPropertiesDeferred.await()
 
                     _properties.postValue(resultapi.results)
+/*                    _status.value = MoviesApiStatus.DONE*/
                 } catch (e: Exception) {
+        /*            _status.value = MoviesApiStatus.ERROR*/
 
                 }
             }
         }
     }
 
-
+    /**
+     * This method will be called when this ViewModel is no longer used and will be destroyed.
+     *
+     *
+     * It is useful when ViewModel observes some data and you need to clear this subscription to
+     * prevent a leak of this ViewModel.
+     */
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()

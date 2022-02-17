@@ -29,8 +29,9 @@
         android:name="com.example.moviesapplication.details.Detailfragment"
         android:label=""
         tools:layout="@layout/detail_layout" >
+
         <argument
-            android:name="selectedMovies"
-            app:argType="com.example.moviesapplication.network.Resultss" />
+            android:name="selectedMovieId"
+            app:argType="integer" />
     </fragment>
 </navigation>

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.moviesapplication.network.Resultss
 
 class DetailViewModelFactory(
-    private val resultss: Resultss,
+    private val resultss: Int,
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
@@ -15,3 +15,4 @@ class DetailViewModelFactory(
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
+

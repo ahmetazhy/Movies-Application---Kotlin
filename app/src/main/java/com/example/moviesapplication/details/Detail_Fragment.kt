@@ -6,11 +6,19 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesapplication.R
 import com.example.moviesapplication.databinding.DetailLayoutBinding
+import com.example.moviesapplication.network.Genres
+
 
 class Detailfragment : Fragment() {
     private lateinit var viewModell: DetailViewModel
+    private var movieList = mutableListOf<Genres>()
+    private lateinit var moviesAdapter: GenereAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,7 +27,7 @@ class Detailfragment : Fragment() {
         val binding = DetailLayoutBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        val resultss = DetailfragmentArgs.fromBundle(requireArguments()).selectedMovies
+        val resultss = DetailfragmentArgs.fromBundle(requireArguments()).selectedMovieId
 
         val viewModelFactory = DetailViewModelFactory(resultss)
 
@@ -29,10 +37,21 @@ class Detailfragment : Fragment() {
 
         binding.viewModel = this.viewModell
 
+        val recyclerView: RecyclerView = binding.recyclerView
+        val layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.itemAnimator = DefaultItemAnimator()
+
+        viewModell.selectedMovies.observe(viewLifecycleOwner) {
+            movieList.addAll(it.genres)
+
+            recyclerView.adapter = GenereAdapter(movieList)
+        }
 
         setHasOptionsMenu(true)
         return binding.root
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.detailmenu, menu)
@@ -40,8 +59,27 @@ class Detailfragment : Fragment() {
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.onNavDestinationSelected(item,
-            requireView().findNavController())
+        return NavigationUI.onNavDestinationSelected(
+            item,
+            requireView().findNavController()
+        )
                 || super.onOptionsItemSelected(item)
     }
+
+
+//    class MovieModel(genre: String?) {
+//        private var genre: String
+//
+//        init {
+//            this.genre = genre!!
+//
+//        }
+//
+//
+//        fun getGenre(): String? {
+//            return genre
+//        }
+//
+//    }
+
 }

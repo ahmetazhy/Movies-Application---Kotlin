@@ -76,7 +76,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             tools:text="Star Wars"
-                            android:text="@{viewModel.selectedMovies.original_title}"
+                            android:text="@{viewModel.selectedMovies.title}"
                             android:textColor="@color/black"
                             android:textSize="19sp"
                             android:textStyle="bold">
@@ -96,7 +96,7 @@
                                 android:layout_marginEnd="4dp"
                                 android:background="@drawable/border"
                                 android:padding="3dp"
-                                android:text="@{String.valueOf(viewModel.selectedMovies.genre_ids[0])}"
+
                                 tools:text="Action" />
 
                             <TextView
@@ -104,7 +104,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/border"
                                 android:padding="3dp"
-                                android:text="@{String.valueOf(viewModel.selectedMovies.genre_ids[1])}"
+
                                 tools:text="Adventure" />
 
 
@@ -120,7 +120,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/border"
                                 android:padding="3dp"
-                                android:text="@{String.valueOf(viewModel.selectedMovies.genre_ids[2])}"
+
                                 tools:text="Comedy" />
 
                             <TextView
@@ -129,7 +129,7 @@
                                 android:background="@drawable/border"
                                 android:layout_marginStart="2dp"
                                 android:padding="3dp"
-                                android:text="@{String.valueOf(viewModel.selectedMovies.genre_ids[3])}"
+
                                 tools:text="Comedy" />
                         </LinearLayout>
 
@@ -179,7 +179,7 @@
                             android:textColor="@color/black"
                             android:layout_gravity="center"
                             android:textSize="11sp"
-                            android:text="@{String.valueOf(viewModel.selectedMovies.vote_average)}"
+
                             android:textStyle="bold"/>
 
                         <ImageView
@@ -201,7 +201,7 @@
                             android:layout_height="wrap_content"
                             tools:text="En"
                             android:textAllCaps="true"
-                            android:text="@{viewModel.selectedMovies.original_language}"
+
                             android:layout_marginStart="-65dp"
                             android:textColor="@color/black"
                             android:layout_gravity="center"
@@ -218,7 +218,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             tools:text="1977-05-25"
-                            android:text="@{String.valueOf(viewModel.selectedMovies.release_date)}"
+
                             android:textColor="@color/black"
                             android:layout_gravity="center"
                             android:textSize="11sp"
@@ -230,7 +230,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="@{String.valueOf(viewModel.selectedMovies.vote_count)}"
+
                             android:textColor="@color/gray"
                             android:textSize="11sp"
                             tools:text="11470" />
@@ -283,7 +283,7 @@
                         android:layout_marginTop="20dp"
                         android:layout_width="wrap_content"
                         tools:text="@string/overview"
-                        android:text="@{viewModel.selectedMovies.overview}"
+
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         />

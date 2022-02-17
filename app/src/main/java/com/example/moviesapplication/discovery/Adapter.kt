@@ -25,7 +25,6 @@ class ResultAdapter(val onClickListener: OnClickListener) :
             binding.property = resultss
             binding.executePendingBindings()
 
-            Log.i("mmm","${resultss.original_title.toString()}")
 
         }
     }

@@ -1,6 +1,7 @@
 package com.example.moviesapplication.utils
 
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.moviesapplication.R
+import com.example.moviesapplication.discovery.MoviesApiStatus
 import com.example.moviesapplication.discovery.ResultAdapter
 import com.example.moviesapplication.network.Resultss
 import javax.xml.transform.stream.StreamSource
@@ -44,4 +46,22 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
 fun TextView.setGeneric(date: Int?) {
     val generic = date
     this.text = generic.toString()
+}
+
+
+@BindingAdapter("moviesApiStatus")
+fun bindStatus(statusImageView: ImageView, status: MoviesApiStatus?) {
+    when (status) {
+        MoviesApiStatus.LOADING -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.setImageResource(R.drawable.loading_animation)
+        }
+        MoviesApiStatus.ERROR -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.setImageResource(R.drawable.ic_connection_error)
+        }
+        MoviesApiStatus.DONE -> {
+            statusImageView.visibility = View.GONE
+        }
+    }
 }
