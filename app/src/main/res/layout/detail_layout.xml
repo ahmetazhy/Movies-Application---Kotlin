@@ -213,7 +213,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/primary_color"
+                    android:textColor="@color/black"
                     android:text="@string/overviewTitle" />
                 <TextView
                     android:id="@+id/textView9"
@@ -237,13 +237,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/primary_color"
+                    android:textColor="@color/black"
                     android:text="@string/the_cast" />
 
                 <ImageView
                     android:id="@+id/imageView4"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:src="@drawable/download" />
 
@@ -252,6 +253,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginBottom="30dp"
                 android:orientation="vertical">
                 <TextView
@@ -259,8 +261,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginStart="25dp"
-                    android:textColor="@color/primary_color"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
                     android:text="@string/trailers" />
 
 
@@ -269,7 +271,7 @@
                     android:id="@+id/recycler_view_trailer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="30dp"
+                    android:layout_marginTop="10dp"
                     tools:itemCount="2"
                     tools:listitem="@layout/trailers_item" />
 
