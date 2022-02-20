@@ -1,19 +1,13 @@
 package com.example.moviesapplication.discovery
 
-import android.os.Build
-import android.util.Log
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.annotation.RequiresApi
-import androidx.databinding.adapters.ViewBindingAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesapplication.databinding.DiscoveryItemBinding
-import com.example.moviesapplication.network.PopularProperty
 import com.example.moviesapplication.network.Resultss
-import timber.log.Timber
 
 class ResultAdapter(val onClickListener: OnClickListener) :
     ListAdapter<Resultss, ResultAdapter.ResultssViewHolder>(DiffCallback) {

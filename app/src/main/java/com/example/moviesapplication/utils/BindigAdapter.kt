@@ -25,7 +25,6 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<Resultss>?) {
 
 
 
-
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
     val aa="https://image.tmdb.org/t/p/w500"+imgUrl
@@ -39,13 +38,6 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
                 .error(R.drawable.ic_broken_image))
             .into(imgView)
     }
-}
-
-
-@BindingAdapter("generic")
-fun TextView.setGeneric(date: Int?) {
-    val generic = date
-    this.text = generic.toString()
 }
 
 

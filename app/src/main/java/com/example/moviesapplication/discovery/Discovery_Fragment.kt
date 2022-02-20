@@ -1,7 +1,6 @@
 package com.example.moviesapplication.discovery
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -34,9 +33,6 @@ class Discovery_Fragment : Fragment() {
         })
         binding.weekList.adapter = adapter
 
-//        binding.weekList.adapter = ResultAdapter(ResultAdapter.OnClickListener {
-//            viewModel.displayMoviesDetails(it)
-//        })
 
 
         viewModel.navigateToSelectedMovies.observe(viewLifecycleOwner) {

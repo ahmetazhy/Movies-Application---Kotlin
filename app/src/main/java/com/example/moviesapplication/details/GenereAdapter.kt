@@ -8,7 +8,6 @@ import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesapplication.R
 import com.example.moviesapplication.network.Genres
-import org.joda.time.DateTimeFieldType.year
 
 internal class GenereAdapter(private var moviesList: List<Genres>) :
     RecyclerView.Adapter<GenereAdapter.MyViewHolder>() {
@@ -29,3 +28,4 @@ internal class GenereAdapter(private var moviesList: List<Genres>) :
         return moviesList.size
     }
 }
+
