@@ -1,8 +1,10 @@
 package com.example.moviesapplication.discovery
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.moviesapplication.network.PopularApi
 import com.example.moviesapplication.network.Resultss
 import kotlinx.coroutines.*
@@ -33,74 +35,53 @@ class Discovery_ViewModels : ViewModel() {
     val properties: LiveData<List<Resultss>>
         get() = _properties
 
-    private var viewModelJob = Job()
-    private val ioScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-
     init {
         getPopularMovies()
     }
 
     fun getPopularMovies() {
-        ioScope.launch {
-            withContext(Dispatchers.IO) {
+        viewModelScope.launch {
+               _status.value = MoviesApiStatus.LOADING
                 var getPropertiesDeferred = PopularApi.retrofitService.getProperties()
-             /*   _status.value = MoviesApiStatus.LOADING*/
                 try {
                     var resultapi = getPropertiesDeferred.await()
-
                     _properties.postValue(resultapi.results)
-            /*        _status.value = MoviesApiStatus.DONE*/
+                    Log.i("slm","$_properties.")
+                    _status.value = MoviesApiStatus.DONE
                 } catch (e: Exception) {
-/*                    _status.value = MoviesApiStatus.ERROR*/
+                    _status.value = MoviesApiStatus.ERROR
                 }
-            }
         }
     }
 
     fun getTopRatedMovies() {
-        ioScope.launch{
-            withContext(Dispatchers.IO) {
+        viewModelScope.launch {
+            _status.value = MoviesApiStatus.LOADING
                 var getPropertiesDeferred = PopularApi.retrofitService.getTopRated()
-//                _status.value = MoviesApiStatus.LOADING
                 try {
                     var resultapi = getPropertiesDeferred.await()
-
                     _properties.postValue(resultapi.results)
-//                    _status.value = MoviesApiStatus.DONE
+                    _status.value = MoviesApiStatus.DONE
                 } catch (e: Exception) {
-//                    _status.value = MoviesApiStatus.ERROR
+                    _status.value = MoviesApiStatus.ERROR
                 }
-            }
         }
     }
 
     fun getNowPlaying() {
-        ioScope.launch {
-            withContext(Dispatchers.IO) {
+        viewModelScope.launch {
+            _status.value = MoviesApiStatus.LOADING
                 var getPropertiesDeferred = PopularApi.retrofitService.getNowPlaying()
-/*                _status.value = MoviesApiStatus.LOADING*/
                 try {
                     var resultapi = getPropertiesDeferred.await()
 
                     _properties.postValue(resultapi.results)
-/*                    _status.value = MoviesApiStatus.DONE*/
+                    _status.value = MoviesApiStatus.DONE
                 } catch (e: Exception) {
-        /*            _status.value = MoviesApiStatus.ERROR*/
+                    _status.value = MoviesApiStatus.ERROR
 
                 }
-            }
         }
     }
 
-    /**
-     * This method will be called when this ViewModel is no longer used and will be destroyed.
-     *
-     *
-     * It is useful when ViewModel observes some data and you need to clear this subscription to
-     * prevent a leak of this ViewModel.
-     */
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
 }
