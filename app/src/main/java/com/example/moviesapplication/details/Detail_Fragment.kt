@@ -16,12 +16,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesapplication.R
 import com.example.moviesapplication.databinding.DetailLayoutBinding
 import com.example.moviesapplication.network.Genres
+import com.example.moviesapplication.network.Production_companies
 import com.example.moviesapplication.network.Results
 
 
 class Detailfragment : Fragment() {
     private lateinit var viewModell: DetailViewModel
     private var movieList = mutableListOf<Genres>()
+    private var companiesList = mutableListOf<Production_companies>()
 
 
     private var viewModelAdapter: DevByteAdapter? = null
@@ -80,6 +82,22 @@ class Detailfragment : Fragment() {
         binding.recyclerViewTrailer.layoutManager=LinearLayoutManager(this.context,
             LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerViewTrailer.adapter = viewModelAdapter
+
+
+
+        // Companies Recyclerview
+
+        val recyclerViewCom: RecyclerView = binding.recyclerViewCompanies
+        var layoutManagerCom = LinearLayoutManager(this.context,
+            LinearLayoutManager.HORIZONTAL, false)
+        recyclerViewCom.layoutManager = layoutManagerCom
+        recyclerViewCom.itemAnimator = DefaultItemAnimator()
+
+
+        viewModell.selectedMovies.observe(viewLifecycleOwner) {
+            companiesList.addAll(it.production_companies)
+            recyclerViewCom.adapter = CompaniesNameAdapter(companiesList)
+        }
 
 
 
