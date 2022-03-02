@@ -10,7 +10,7 @@
         <menu>
 
 
-            <group >
+            <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/popularitem"
                     android:title="Popular"
@@ -32,6 +32,9 @@
             </group>
         </menu>
     </item>
+
+
+
 
 
 </menu>

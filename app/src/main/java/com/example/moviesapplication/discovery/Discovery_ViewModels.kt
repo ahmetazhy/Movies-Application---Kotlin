@@ -50,6 +50,8 @@ class Discovery_ViewModels : ViewModel() {
                     _status.value = MoviesApiStatus.DONE
                 } catch (e: Exception) {
                     _status.value = MoviesApiStatus.ERROR
+
+                    Log.i("www","$e")
                 }
         }
     }
