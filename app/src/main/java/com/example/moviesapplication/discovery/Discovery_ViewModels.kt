@@ -42,7 +42,7 @@ class Discovery_ViewModels : ViewModel() {
     fun getPopularMovies() {
         viewModelScope.launch {
                _status.value = MoviesApiStatus.LOADING
-                var getPropertiesDeferred = PopularApi.retrofitService.getProperties()
+                val getPropertiesDeferred = PopularApi.retrofitService.getProperties()
                 try {
                     var resultapi = getPropertiesDeferred.await()
                     _properties.postValue(resultapi.results)
@@ -59,7 +59,7 @@ class Discovery_ViewModels : ViewModel() {
     fun getTopRatedMovies() {
         viewModelScope.launch {
             _status.value = MoviesApiStatus.LOADING
-                var getPropertiesDeferred = PopularApi.retrofitService.getTopRated()
+                val getPropertiesDeferred = PopularApi.retrofitService.getTopRated()
                 try {
                     var resultapi = getPropertiesDeferred.await()
                     _properties.postValue(resultapi.results)
@@ -73,7 +73,7 @@ class Discovery_ViewModels : ViewModel() {
     fun getNowPlaying() {
         viewModelScope.launch {
             _status.value = MoviesApiStatus.LOADING
-                var getPropertiesDeferred = PopularApi.retrofitService.getNowPlaying()
+                val getPropertiesDeferred = PopularApi.retrofitService.getNowPlaying()
                 try {
                     var resultapi = getPropertiesDeferred.await()
 

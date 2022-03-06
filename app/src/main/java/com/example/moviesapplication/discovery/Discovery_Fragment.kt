@@ -70,26 +70,23 @@ class Discovery_Fragment : Fragment() {
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.popularitem -> {
-                Toast.makeText(this.context, "Popular", Toast.LENGTH_LONG).show()
-                viewModel.getPopularMovies()
-                item.isChecked = !item.isChecked
-                true
-            }
-            R.id.toprated -> {
-                Toast.makeText(this.context, "Top Rated", Toast.LENGTH_LONG).show()
-                viewModel.getTopRatedMovies()
-                viewModel.getNowPlaying()
-                item.isChecked = !item.isChecked
-                true
-            }
-            R.id.nowplaying -> {
-                Toast.makeText(this.context, "Now Playing", Toast.LENGTH_LONG).show()
-                viewModel.getNowPlaying()
-                item.isChecked = !item.isChecked
-                true
-            }
+        if (item.itemId == R.id.popularitem) {
+            Toast.makeText(this.context, "Popular", Toast.LENGTH_LONG).show()
+            viewModel.getPopularMovies()
+            item.isChecked = !item.isChecked
+            true
+        }
+        if (item.itemId == R.id.toprated) {
+            Toast.makeText(this.context, "Top Rated", Toast.LENGTH_LONG).show()
+            viewModel.getTopRatedMovies()
+            item.isChecked = !item.isChecked
+            true
+        }
+         if (item.itemId == R.id.nowplaying) {
+            Toast.makeText(this.context, "Now Playing", Toast.LENGTH_LONG).show()
+            viewModel.getNowPlaying()
+            item.isChecked = !item.isChecked
+            true
         }
         return true
 
